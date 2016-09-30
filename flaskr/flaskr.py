@@ -11,6 +11,7 @@
 """
 
 import os
+import mzgtfs.feed
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
@@ -70,9 +71,8 @@ def close_db(error):
 
 @app.route('/')
 def show_entries():
-    db = get_db()
-    cur = db.execute('select title, text from entries order by id desc')
-    entries = cur.fetchall()
+    gtfs_feed = mzgtfs.feed.Feed(filename='flaskr/google_transit_staten_island.zip')
+    entries = gtfs_feed.read('calendar')
     return render_template('show_entries.html', entries=entries)
 
 

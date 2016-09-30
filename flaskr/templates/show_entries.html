@@ -13,7 +13,17 @@
   {% endif %}
   <ul class="entries">
   {% for entry in entries %}
-    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}</li>
+    <div><span style="text-decoration: underline">{{entry.service_id}}</span>
+      <div>Start Date: {{entry.start_date}}</div>
+      <div>Monday active?: {{entry.monday}}</div>
+      <div>Tuesday active?: {{entry.tuesday}}</div>
+      <div>Wednesday active?: {{entry.wednesday}}</div>
+      <div>Thursday active?: {{entry.thursday}}</div>
+      <div>Friday active?: {{entry.friday}}</div>
+      <div>Saturday active: {{entry.saturday}}</div>
+      <div>Sunday active: {{entry.sunday}}</div>
+      <div>End Date: {{entry.end_date}}</div>
+    </div>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em></li>
   {% endfor %}
