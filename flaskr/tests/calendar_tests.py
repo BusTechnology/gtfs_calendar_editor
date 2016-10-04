@@ -51,6 +51,6 @@ class CalendarTestCase(unittest.TestCase):
 						list_trips.append(trip)
 				self.assertEqual(len(list_trips), i)
 
-
+	
 if __name__ == '__main__':
 	unittest.main()
