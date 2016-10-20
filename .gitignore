@@ -4,3 +4,4 @@ flaskr.db
 flaskr/gtfs_files/
 calendar.txt
 venv/
+*.pyc
