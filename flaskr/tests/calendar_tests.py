@@ -6,7 +6,7 @@ import mzgtfs.feed
 import zipfile
 import time
 
-from utils import GtfsHandler
+from gtfsHandler import GtfsHandler 
 
 boroughs = ['staten_island']
 path = "../flaskr/gtfs_files/"

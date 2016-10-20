@@ -16,7 +16,7 @@ from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
 	 render_template, flash
 
-from utils import GtfsHandler
+import gtfsHandler
 
 
 # create our little application :)
@@ -73,11 +73,11 @@ def close_db(error):
 
 @app.route('/')
 def show_entries():
-	gtfs_feed = mzgtfs.feed.Feed(filename='flaskr/gtfs_files/google_transit_staten_island.zip')
-	for stop in self.gtfs_feed.stops():
-			stop.set('zone_id', '1')
-		self.gtfs_feed.write('stops.txt', self.gtfs_feed.stops(), sortkey='stop_id')
-		self.gtfs_feed.make_zip('new.zip', files=['stops.txt'], clone=self.gtfs_file)
+	gtfs_feed = mzgtfs.feed.Feed(filename='gtfs_files/google_transit_staten_island.zip')
+	# for stop in self.gtfs_feed.stops():
+			# stop.set('zone_id', '1')
+		# self.gtfs_feed.write('stops.txt', self.gtfs_feed.stops(), sortkey='stop_id')
+		# self.gtfs_feed.make_zip('new.zip', files=['stops.txt'], clone=self.gtfs_file)
 	entries = gtfs_feed.read('calendar')
 	list_service_id = []
 	for entry in entries:

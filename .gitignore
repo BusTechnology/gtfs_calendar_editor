@@ -1,2 +1,6 @@
 flaskr.db
 .eggs/
+*.zip
+flaskr/gtfs_files/
+calendar.txt
+venv/
