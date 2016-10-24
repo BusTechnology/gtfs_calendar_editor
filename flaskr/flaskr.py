@@ -11,13 +11,13 @@
 """
 
 import os
-import mzgtfs.feed
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
 	 render_template, flash
 
-import gtfsHandler
-
+from gtfsHandler import GtfsHandler
+from feeddates import FeedDates
+from datepicker import DatePicker
 
 # create our little application :)
 app = Flask(__name__)
@@ -73,26 +73,18 @@ def close_db(error):
 
 @app.route('/')
 def show_entries():
-	gtfs_feed = mzgtfs.feed.Feed(filename='gtfs_files/google_transit_staten_island.zip')
-	# for stop in self.gtfs_feed.stops():
-			# stop.set('zone_id', '1')
-		# self.gtfs_feed.write('stops.txt', self.gtfs_feed.stops(), sortkey='stop_id')
-		# self.gtfs_feed.make_zip('new.zip', files=['stops.txt'], clone=self.gtfs_file)
-	entries = gtfs_feed.read('calendar')
-	list_service_id = []
-	for entry in entries:
-		list_service_id.append(entry['service_id'])
-	trips = gtfs_feed.trips()
-	for service_id in list_service_id:
-		print 'service_id is ' + str(service_id)
-		i = 0
-		for trip in trips:
-			if trip['service_id'] == str(service_id):
-				print 'trip service_id is ' + trip['service_id']
-				i += 1
-				print i
-	# trips = gtfs_feed.trips()
-	return render_template('show_entries.html', entries=entries, trips=trips)
+	
+	gtfs_calendar = FeedDates()
+	start_and_ends = gtfs_calendar.get_calendar_bookends()
+
+	full_calendar = gtfs_calendar.get_full_calendar_object()
+
+	datepicker = DatePicker()
+
+	# hello = datepicker.get_cal_for_date('20161010')
+	hello = datepicker.deactivate_cal_for_date('20161010')
+
+	return render_template('show_entries.html', entries=start_and_ends, cal=full_calendar, hello=hello)
 
 
 @app.route('/add', methods=['POST'])

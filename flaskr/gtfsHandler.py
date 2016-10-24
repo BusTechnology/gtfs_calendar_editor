@@ -133,18 +133,22 @@ class GtfsHandler():
 
 	def get_active_calendars_for_date(self, service_date):
 		global calendars
-		date_to_modify = calendar_dates.get(service_date)
 
-		for item in date_to_modify:
-			if item.get('exception_type') == '2':
-				cal_to_modify = calendars.get(service_date)
-				for sid in cal_to_modify:
-					if sid == item.get('service_id'):
-						cal_to_modify.remove(sid)
+		try:
+			date_to_modify = calendar_dates.get(service_date)
+			for item in date_to_modify:
+				if item.get('exception_type') == '2':
+					cal_to_modify = calendars.get(service_date)
+					for sid in cal_to_modify:
+						if sid == item.get('service_id'):
+							cal_to_modify.remove(sid)
 
-			if item.get('exception_type') == '1':
-				cal_to_modify = calendars.get(service_date)
-				cal_to_modify.append(str(item.get('service_id')))
+				if item.get('exception_type') == '1':
+					cal_to_modify = calendars.get(service_date)
+					cal_to_modify.append(str(item.get('service_id')))
+		except TypeError:
+			date_to_modify = None	
+
 
 		return calendars[service_date]
 
@@ -156,8 +160,8 @@ class GtfsHandler():
 		for item in date_to_modify:
 			if item.get('exception_type') == '1':
 				item['exception_type'] = '2'
-			elif item.get('exception_type')	== '2': 
-				item['exception_type'] = '1'
+			# elif item.get('exception_type')	== '2': 
+				# item['exception_type'] = '1'
 		return calendar_dates[service_date]
 
 	def activate_calendar(self, service_id, service_date):

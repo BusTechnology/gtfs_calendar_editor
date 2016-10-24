@@ -11,9 +11,48 @@
       </dl>
     </form>
   {% endif %}
-  <ul class="entries">
-  {% for entry in entries %}
-    <div><span style="text-decoration: underline">{{entry.service_id}}</span>
+  <!-- <ul>Select File:
+  <li><a href="#">Staten Island</a></li>
+  <li><a href="#">Brooklyn</a></li>
+  <li>Manhattan</li> -->
+  <!-- <li></li> -->
+  <!-- <li></li> -->
+  <!-- <li></li> -->
+  <!-- </ul> -->
+  <ul>Select Depot:
+  <li>Castleton</li>
+  <li><a href="#">Charleston</a></li>
+  <li>Meredith Ave</li>
+  <li>Yukon</li>
+  <!-- <li></li> -->
+  <!-- <li></li> -->
+  <!-- <li></li> -->
+  </ul>
+  <ul>Select Date:
+  <li><a href="#">20161010</a></li>
+  <li>20161010</li>
+  <!-- <li></li> -->
+  <!-- <li></li> -->
+  <!-- <li></li> -->
+  </ul>
+  <!-- <div>Start Date: {{ entries['start_date'] }}</div> -->
+  <!-- <div>End Date: {{ entries['end_date'] }}</div> -->
+  {% for entry in hello %}
+  {% if entry['exception_type'] == '1' %}
+    <div>Active Service</div>
+    <div>20161010: {{entry}}</div>
+  
+  {% else %}
+    <div>Inactive Service</div>
+    <div>20161010: {{entry}}</div>
+
+  {% endif %}
+  {% endfor %}
+
+  <!-- <ul class="entries"> -->
+  <!-- {% for entry in cal %} -->
+  <!-- <div>{{cal}}</div> -->
+    <!-- <div><span style="text-decoration: underline">{{entry.service_id}}</span>
       <div>Start Date: {{entry.start_date}}</div>
       <div>Monday active?: {{entry.monday}}</div>
       <div>Tuesday active?: {{entry.tuesday}}</div>
@@ -23,10 +62,11 @@
       <div>Saturday active: {{entry.saturday}}</div>
       <div>Sunday active: {{entry.sunday}}</div>
       <div>End Date: {{entry.end_date}}</div>
-    </div>
-  {% else %}
-    <li><em>Unbelievable.  No entries here so far</em></li>
-  {% endfor %}
-  {{trips}}
-  </ul>
+    </div> -->
+  <!-- {% else %} -->
+    <!-- <li><em>Unbelievable.  No entries here so far</em></li> -->
+  <!-- {% endfor %} -->
+  <!-- {{trips}} -->
+  <!-- </ul> -->
+  <!-- <div>Full Calendar Object: {{ cal }}</div> -->
 {% endblock %}
