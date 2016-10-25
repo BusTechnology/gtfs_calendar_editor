@@ -5,3 +5,10 @@ flaskr/gtfs_files/
 calendar.txt
 venv/
 *.pyc
+gtfs-editor/node_modules
+gtfs-editor/dist
+gtfs-editor/npm-debug.log
+gtfs-editor/test/unit/coverage
+gtfs-editor/test/e2e/reports
+gtfs-editor/selenium-debug.log
+

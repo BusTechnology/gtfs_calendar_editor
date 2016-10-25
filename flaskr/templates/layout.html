@@ -1,17 +1,1 @@
-<!doctype html>
-<title>GTFS Calendar Editor</title>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-<div class="page">
-  <h1>GTFS Calendar Editor</h1>
-  <div class="metanav">
-  {% if not session.logged_in %}
-    <a href="{{ url_for('login') }}">log in</a>
-  {% else %}
-    <a href="{{ url_for('logout') }}">log out</a>
-  {% endif %}
-  </div>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block body %}{% endblock %}
-</div>
+<!DOCTYPE html><html><head><meta charset=utf-8><title>gtfs-cal-editor</title><link href=/templates/static/css/app.474c44b087458662d2c34a30c6698419.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=/templates/static/js/manifest.2a24048a95eae34f6fef.js></script><script type=text/javascript src=/templates/static/js/vendor.b5dd7c276ff1bbf37ea2.js></script><script type=text/javascript src=/templates/static/js/app.e653013007e9dbe0cce2.js></script></body></html>

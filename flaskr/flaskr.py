@@ -13,7 +13,7 @@
 import os
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-	 render_template, flash
+	 render_template, flash, send_from_directory, jsonify
 
 from gtfsHandler import GtfsHandler
 from feeddates import FeedDates
@@ -32,6 +32,9 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
+@app.route('/templates/<path:path>')
+def send_static(path):
+    return send_from_directory('templates', path)
 
 def connect_db():
 	"""Connects to the specific database."""
@@ -84,6 +87,9 @@ def show_entries():
 	# hello = datepicker.get_cal_for_date('20161010')
 	hello = datepicker.deactivate_cal_for_date('20161010')
 
+	# return jsonify(
+	# 	start_date=start_and_ends['start_date'],
+	# 	end_date=start_and_ends['end_date'])
 	return render_template('show_entries.html', entries=start_and_ends, cal=full_calendar, hello=hello)
 
 
