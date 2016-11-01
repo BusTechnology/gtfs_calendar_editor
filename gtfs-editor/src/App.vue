@@ -1,7 +1,8 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+  <div>
+    <main class="container">
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
@@ -9,12 +10,16 @@
 import Hello from './components/Hello'
 
 export default {
-  name: 'app',
   components: {
     Hello
+  },
+
+  created () {
+    this.$store.dispatch('fetchCalendars')
   }
 }
 </script>
+
 
 <style>
 #app {

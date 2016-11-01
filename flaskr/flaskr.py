@@ -18,9 +18,11 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 from gtfsHandler import GtfsHandler
 from feeddates import FeedDates
 from datepicker import DatePicker
+from flask_cors import CORS, cross_origin
 
 # create our little application :)
 app = Flask(__name__)
+CORS(app)
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
@@ -74,8 +76,8 @@ def close_db(error):
 		g.sqlite_db.close()
 
 
-@app.route('/')
-def show_entries():
+@app.route('/calendars')
+def calendars():
 	
 	gtfs_calendar = FeedDates()
 	start_and_ends = gtfs_calendar.get_calendar_bookends()
@@ -87,10 +89,14 @@ def show_entries():
 	# hello = datepicker.get_cal_for_date('20161010')
 	hello = datepicker.deactivate_cal_for_date('20161010')
 
-	# return jsonify(
-	# 	start_date=start_and_ends['start_date'],
-	# 	end_date=start_and_ends['end_date'])
-	return render_template('show_entries.html', entries=start_and_ends, cal=full_calendar, hello=hello)
+	return jsonify(
+		start_date=start_and_ends['start_date'],
+		end_date=start_and_ends['end_date'],
+		full_calendar=full_calendar)
+
+@app.route('/')
+def show_entries():
+	return render_template('show_entries.html')
 
 
 @app.route('/add', methods=['POST'])
