@@ -7,6 +7,8 @@ import store from './vuex/store'
 import App from './App'
 import Hello from './components/Hello'
 
+import './styles/style.scss'
+
 Vue.use(VueRouter)
 Vue.use(VueResource)
 

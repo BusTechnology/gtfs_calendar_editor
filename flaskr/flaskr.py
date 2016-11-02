@@ -92,7 +92,8 @@ def calendars():
 	return jsonify(
 		start_date=start_and_ends['start_date'],
 		end_date=start_and_ends['end_date'],
-		full_calendar=full_calendar)
+		full_calendar=full_calendar,
+		hello=hello)
 
 @app.route('/')
 def show_entries():

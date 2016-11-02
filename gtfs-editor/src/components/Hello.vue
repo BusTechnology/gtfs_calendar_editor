@@ -1,9 +1,29 @@
 <template>
   <div class="hello">
-    <section>
-      <li>{{calendars.start_date}}</li>
-      <li>{{calendars.end_date}}</li>
-  </section>
+  <!-- <li>{{calendars.full_calendar}}</li> -->
+
+  
+  <table class="table table-hover product-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Services</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="key, product in calendars.full_calendar" v-on:click.prevent="onEdit(product)">
+        <td>{{product}}</td>
+        <td>{{key}}</td>
+        <!-- <td><a href="#" v-on:click.prevent.stop="onRemove(product.id)">remove</a></td> -->
+      </tr>
+      <!-- <tr v-if="!products.length">
+        <td colspan="4" class="p-y-3 text-xs-center">
+          <strong>You should add some products!</strong>
+        </td>
+      </tr> -->
+    </tbody>
+  </table>
   </div>
 </template>
 
