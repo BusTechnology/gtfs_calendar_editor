@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Calendars from './components/Calendars'
 
 export default {
   components: {
-    Hello
+    Calendars
   },
 
   created () {

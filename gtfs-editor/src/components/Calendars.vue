@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="calendars">
   <!-- <li>{{calendars.full_calendar}}</li> -->
 
   
@@ -31,7 +31,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'hello',
+  name: 'calendars',
   computed: mapGetters({
     calendars: 'getCalendars'
   })
