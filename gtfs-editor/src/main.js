@@ -5,7 +5,8 @@ import VueResource from 'vue-resource'
 import store from './vuex/store'
 
 import App from './App'
-import Calendars from './components/Calendars'
+// import Calendars from './components/Calendars'
+import ManageCalendar from './components/ManageCalendar'
 
 import './styles/style.scss'
 
@@ -16,7 +17,8 @@ Vue.use(VueResource)
 Vue.http.options.root = 'http://localhost:5000'
 
 const routes = [
-  { path: '/home', alias: '/', component: Calendars }
+  { path: '/home', alias: '/', component: ManageCalendar }
+  // { path: '/manage-calendar', component: ManageCalendar }
 ]
 
 const router = new VueRouter({

@@ -1,7 +1,7 @@
 import mzgtfs.feed
 from gtfsHandler import GtfsHandler
 
-path = "gtfs_files/"
+path = "flaskr/gtfs_files/"
 boroughs = ['staten_island', 'brooklyn', 'manhattan', 'queens', 'bronx']
 gtfs_calendar = GtfsHandler()
 

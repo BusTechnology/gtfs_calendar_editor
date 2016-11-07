@@ -13,7 +13,7 @@ const initialState = {
 // mutations
 const mutations = {
   [FETCH_CALENDARS] (state, calendars) {
-    // assign the products that we got from our FETCH_PROUDCTS event to state.all
+    // assign the calendars that we got from our FETCH_CALENDARS event to state.all
     state.all = calendars
   }
 }
