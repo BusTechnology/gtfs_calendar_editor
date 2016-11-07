@@ -84,6 +84,8 @@ def calendars():
 
 	full_calendar = gtfs_calendar.get_full_calendar_object()
 
+	all_service_id = gtfs_calendar.get_all_service_id()
+
 	datepicker = DatePicker()
 
 	# hello = datepicker.get_cal_for_date('20161010')
@@ -93,7 +95,9 @@ def calendars():
 		start_date=start_and_ends['start_date'],
 		end_date=start_and_ends['end_date'],
 		full_calendar=full_calendar,
-		hello=hello)
+		hello=hello,
+		all_service_id=all_service_id
+		)
 
 @app.route('/')
 def show_entries():

@@ -23,3 +23,8 @@ class FeedDates():
 		full_calendar = gtfs_calendar.get_calendars_for_feed(self.gtfs_feed)
 
 		return full_calendar
+
+	def get_all_service_id(self):
+		all_service_id = gtfs_calendar.get_service_id(self.gtfs_feed)
+
+		return all_service_id

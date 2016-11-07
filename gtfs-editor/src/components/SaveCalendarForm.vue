@@ -18,6 +18,12 @@
         {{ option }}
         </option>
       </select>
+      <label for="price">Inactive Service</label>
+      <select type="text" class="form-control" id="price" placeholder="Enter Price" multiple>
+        <option v-model="calendarToEdit.i" v-for="option in calendarToEdit.i" v-bind:value="option">
+        {{ option }}
+        </option>
+      </select>
       <!-- <div v-if="formErrors.price" class="form-control-feedback">{{formErrors.price}}</div> -->
     </div>
 

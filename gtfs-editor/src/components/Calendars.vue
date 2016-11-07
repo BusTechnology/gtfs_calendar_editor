@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="svc_id, cal_date in calendars.full_calendar" v-on:click="onEdit(svc_id, cal_date)" v-if="svc_id.length!==0">
+      <tr v-for="svc_id, cal_date in calendars.full_calendar" v-on:click="onEdit(svc_id, cal_date, calendars.all_service_id)" v-if="svc_id.length!==0">
         <td>{{cal_date}}</td>
         <td>{{svc_id}}</td>
         <!-- <td><a href="#" v-on:click.prevent.stop="onRemove(product.id)">remove</a></td> -->
@@ -35,9 +35,15 @@ export default {
     calendars: 'getCalendars'
   }),
   methods: {
-    onEdit (svcId, calDate) {
-      var calendarToEdit = {'d': calDate, 's': svcId}
-      console.log(calendarToEdit)
+    onEdit (svcId, calDate, allServiceId) {
+      var inactive = allServiceId.slice(0)
+      for (var i = 0; i < svcId.length; i++) {
+        if (inactive.includes(svcId[i])) {
+          var index = inactive.indexOf(svcId[i])
+          inactive.splice(index, 1)
+        }
+      }
+      var calendarToEdit = {'d': calDate, 's': svcId, 'i': inactive}
       this.$emit('edit', calendarToEdit)
     }
   }
