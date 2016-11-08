@@ -95,7 +95,6 @@ def calendars():
 		start_date=start_and_ends['start_date'],
 		end_date=start_and_ends['end_date'],
 		full_calendar=full_calendar,
-		hello=hello,
 		all_service_id=all_service_id
 		)
 

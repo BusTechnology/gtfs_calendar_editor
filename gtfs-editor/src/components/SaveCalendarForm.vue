@@ -13,13 +13,13 @@
 
     <div class="form-group">
       <label for="price">Active Service</label>
-      <select type="text" class="form-control" id="price" placeholder="Enter Price" multiple>
+      <select type="text" class="form-control" id="activeService" placeholder="Enter Price" multiple>
         <option v-model="calendarToEdit.s" v-for="option in calendarToEdit.s" v-bind:value="option">
         {{ option }}
         </option>
       </select>
       <label for="price">Inactive Service</label>
-      <select type="text" class="form-control" id="price" placeholder="Enter Price" multiple>
+      <select type="text" class="form-control" id="inactiveService" placeholder="Enter Price" multiple>
         <option v-model="calendarToEdit.i" v-for="option in calendarToEdit.i" v-bind:value="option">
         {{ option }}
         </option>
@@ -27,10 +27,19 @@
       <!-- <div v-if="formErrors.price" class="form-control-feedback">{{formErrors.price}}</div> -->
     </div>
 
-    <!-- <button type="submit" v-on:click.prevent="onSubmit" class="btn btn-primary">
-      {{calendar.id ? 'Update' : 'Add'}} calendar
-    </button> -->
+    <!-- <button type="submit" class="glyphicon glyphicon-chevron-up"> -->
+    <!-- <button type="submit" v-on:click.prevent="onSubmit" class="glyphicon glyphicon-star"> -->
+      <!-- {{calendar.id ? 'Update' : 'Add'}} calendar -->
+    <!-- </button> -->
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+    Activate
+    </button>
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+    Deactivate
+    </button>
     <!-- <button type="submit" v-if="calendar.id" v-on:click.prevent="onCancel" class="btn btn-secondary">Cancel</button> -->
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-warning">Cancel</button>
   </form>
 </template>
 

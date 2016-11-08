@@ -13,9 +13,13 @@ class GtfsHandler():
 
 	def get_service_id(self, gtfs_feed):
 		calendar_list = gtfs_feed.read('calendar')
-		list_service_id = []
+		list_service_id = set()
 		for entry in calendar_list:
-			list_service_id.append(entry['service_id'])
+			list_service_id.add(entry['service_id'])
+		calendar_dates_list = gtfs_feed.read('calendar_dates')
+		for entry in calendar_dates_list:
+			list_service_id.add(entry['service_id'])
+		list_service_id = list(list_service_id)
 		return list_service_id
 
 	def get_trips_count(self, gtfs_feed, service_id):
