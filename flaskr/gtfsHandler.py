@@ -135,9 +135,7 @@ class GtfsHandler():
 
 
 
-	def get_active_calendars_for_date(self, service_date):
-		global calendars
-
+	def get_active_calendars_for_date(self, service_date, calendars, calendar_dates):
 		try:
 			date_to_modify = calendar_dates.get(service_date)
 			for item in date_to_modify:
@@ -152,7 +150,6 @@ class GtfsHandler():
 					cal_to_modify.append(str(item.get('service_id')))
 		except TypeError:
 			date_to_modify = None	
-
 
 		return calendars[service_date]
 

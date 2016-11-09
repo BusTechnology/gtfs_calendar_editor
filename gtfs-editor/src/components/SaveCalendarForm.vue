@@ -6,24 +6,23 @@
       <div v-if="formErrors.name" class="form-control-feedback">{{formErrors.name}}</div>
     </div>
 
-    <!-- <div class="form-group">
-      <label for="calendarDescription">calendar description <small class="text-muted">(optional)</small></label>
-      <textarea class="form-control" v-model="calendar.description" id="calendarDescription" rows="3" maxlength="128" placeholder="Enter description"></textarea>
-    </div> -->
-
     <div class="form-group">
       <label for="price">Active Service</label>
-      <select type="text" class="form-control" id="activeService" placeholder="Enter Price" multiple>
-        <option v-model="calendarToEdit.s" v-for="option in calendarToEdit.s" v-bind:value="option">
+      <select v-model="selected" type="text" class="form-control" id="activeService" placeholder="Enter Price" multiple>
+        <!-- <option v-model="calendarToEdit.s" v-for="option in calendarToEdit.s" v-bind:value="option"> -->
+        <option v-for="option in calendarToEdit.s" v-bind:value="option">
         {{ option }}
         </option>
       </select>
+      <div>Selected Active Service: {{ selected }}</div>
       <label for="price">Inactive Service</label>
-      <select type="text" class="form-control" id="inactiveService" placeholder="Enter Price" multiple>
-        <option v-model="calendarToEdit.i" v-for="option in calendarToEdit.i" v-bind:value="option">
+      <select v-model="selected2" type="text" class="form-control" id="inactiveService" placeholder="Enter Price" multiple>
+        <!-- <option v-model="calendarToEdit.i" v-for="option in calendarToEdit.i" v-bind:value="option"> -->
+        <option v-for="option in calendarToEdit.i" v-bind:value="option">
         {{ option }}
         </option>
       </select>
+      <span>Selected Inactive Service: {{ selected2 }}</span>
       <!-- <div v-if="formErrors.price" class="form-control-feedback">{{formErrors.price}}</div> -->
     </div>
 
@@ -48,7 +47,9 @@ export default {
   props: ['calendarToEdit'],
   data () {
     return {
-      formErrors: {}
+      formErrors: {},
+      selected: [],
+      selected2: []
     }
   }
   // watch: {
@@ -89,5 +90,8 @@ export default {
 <style scoped>
   form {
     margin-bottom: 24px;
+  }
+  #inactiveService {
+    height: 300px;
   }
 </style>

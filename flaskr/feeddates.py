@@ -21,6 +21,10 @@ class FeedDates():
 		self.load_gtfs()
 
 		full_calendar = gtfs_calendar.get_calendars_for_feed(self.gtfs_feed)
+		full_calendar_dates = gtfs_calendar.get_calendar_dates_for_feed(self.gtfs_feed)
+		
+		for c in full_calendar:
+			full_calendar[c] = gtfs_calendar.get_active_calendars_for_date(c, full_calendar, full_calendar_dates)
 
 		return full_calendar
 
