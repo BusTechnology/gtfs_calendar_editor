@@ -36,7 +36,7 @@ export default {
   }),
   methods: {
     onEdit (svcId, calDate, allServiceId) {
-      var inactive = allServiceId.slice(0)
+      var inactive = allServiceId.slice(0) // clone list of serviceId's
       for (var i = 0; i < svcId.length; i++) {
         if (inactive.includes(svcId[i])) {
           var index = inactive.indexOf(svcId[i])

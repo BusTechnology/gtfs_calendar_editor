@@ -1,1 +1,5 @@
 export const FETCH_CALENDARS = 'calendars/FETCH_CALENDARS'
+export const SELECT_CALENDAR = 'calendars/SELECT_CALENDAR'
+export const DESELECT_CALENDAR = 'calendars/DESELECT_CALENDAR'
+export const ACTIVATE_CALENDAR = 'calendars/ACTIVATE_CALENDAR'
+export const DEACTIVATE_CALENDAR = 'calendars/DEACTIVATE_CALENDAR'

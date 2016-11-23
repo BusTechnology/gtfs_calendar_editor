@@ -2,6 +2,8 @@
   <section>
     <save-calendar-form
       :calendarToEdit="calendarToEdit"
+      v-on:activate="onActivate"
+      v-on:deactivate="onDeactivate"
     ></save-calendar-form>
     <calendars
       :calendars="calendars"
@@ -35,15 +37,24 @@ export default {
   }),
   methods: {
     ...mapActions([
-      'saveCalendar'
+      'saveCalendar',
+      'saveCalendar2',
+      'saveCalendar3',
+      'saveCalendar4'
       // 'deletecalendar'
     ]),
-    // onFormSave (calendar) {
-    //   this.savecalendar(calendar).then(() => this.resetcalendarInForm())
-    // },
-    // resetcalendarInForm () {
-    //   this.calendarInForm = initialData().calendarInForm
-    // },
+    onActivate (calendar) {
+      this.saveCalendar(calendar).then(() => this.resetCalendarInForm())
+    },
+    onDeactivate (calendar) {
+      this.saveCalendar3(calendar).then(() => this.resetCalendarInForm2())
+    },
+    resetCalendarInForm () {
+      this.saveCalendar2(this.calendarToEdit)
+    },
+    resetCalendarInForm2 () {
+      this.saveCalendar4(this.calendarToEdit)
+    },
     onEditClicked (calendarToEdit) {
       this.calendarToEdit = { ...calendarToEdit }
     }
