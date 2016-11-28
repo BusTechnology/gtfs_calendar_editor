@@ -18,18 +18,18 @@ export function updateCalendar ({ commit }, calendar) {
     .then((response) => commit(SELECT_CALENDAR, response.body.data))
 }
 
-export function saveCalendar ({ commit, state }, cal) {
+export function selectSrvToActivate ({ commit, state }, cal) {
   commit(SELECT_CALENDAR, cal)
 }
 
-export function saveCalendar2 ({ commit, state }, cal) {
+export function activateCalendar ({ commit, state }, cal) {
   commit(ACTIVATE_CALENDAR, cal)
 }
 
-export function saveCalendar3 ({ commit, state }, cal) {
+export function selectSrvToDeactivate ({ commit, state }, cal) {
   commit(DESELECT_CALENDAR, cal)
 }
 
-export function saveCalendar4 ({ commit, state }, cal) {
+export function deactivateCalendar ({ commit, state }, cal) {
   commit(DEACTIVATE_CALENDAR, cal)
 }

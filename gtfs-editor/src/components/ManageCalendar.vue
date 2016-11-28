@@ -37,33 +37,28 @@ export default {
   }),
   methods: {
     ...mapActions([
-      'saveCalendar',
-      'saveCalendar2',
-      'saveCalendar3',
-      'saveCalendar4'
-      // 'deletecalendar'
+      'selectSrvToActivate',
+      'activateCalendar',
+      'selectSrvToDeactivate',
+      'deactivateCalendar'
     ]),
-    onActivate (calendar) {
-      this.saveCalendar(calendar).then(() => this.resetCalendarInForm())
-    },
-    onDeactivate (calendar) {
-      this.saveCalendar3(calendar).then(() => this.resetCalendarInForm2())
-    },
-    resetCalendarInForm () {
-      this.saveCalendar2(this.calendarToEdit)
-    },
-    resetCalendarInForm2 () {
-      this.saveCalendar4(this.calendarToEdit)
-    },
     onEditClicked (calendarToEdit) {
       this.calendarToEdit = { ...calendarToEdit }
+    },
+    onActivate (calendar) {
+      this.selectSrvToActivate(calendar).then(() => this.activateCalendarInForm())
+    },
+    onDeactivate (calendar) {
+      this.selectSrvToDeactivate(calendar).then(() => this.deactivateCalendarInForm())
+    },
+    activateCalendarInForm () {
+      this.activateCalendar(this.calendarToEdit)
+    },
+    deactivateCalendarInForm () {
+      this.deactivateCalendar(this.calendarToEdit)
     }
-    // onRemoveClicked(calendar) {
-      // this.deletecalendar(calendar).then(() => {
-        // if (calendar.id === this.calendarInForm.id) {
-          // this.resetcalendarInForm();
-        // }
-      // });
+    // onSubmit(product) {
+    //   this.saveBundle().then(() => this.resetProductInForm())
     // }
   }
 }
