@@ -12,7 +12,7 @@
 
 import os
 from sqlite3 import dbapi2 as sqlite3
-from flask import Flask, request, session, g, redirect, url_for, abort, \
+from flask import Flask, request, Response, session, g, redirect, url_for, abort, \
 	 render_template, flash, send_from_directory, jsonify
 
 from gtfsHandler import GtfsHandler
@@ -38,43 +38,6 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 def send_static(path):
     return send_from_directory('templates', path)
 
-def connect_db():
-	"""Connects to the specific database."""
-	rv = sqlite3.connect(app.config['DATABASE'])
-	rv.row_factory = sqlite3.Row
-	return rv
-
-
-def init_db():
-	"""Initializes the database."""
-	db = get_db()
-	with app.open_resource('schema.sql', mode='r') as f:
-		db.cursor().executescript(f.read())
-	db.commit()
-
-
-@app.cli.command('initdb')
-def initdb_command():
-	"""Creates the database tables."""
-	init_db()
-	print('Initialized the database.')
-
-
-def get_db():
-	"""Opens a new database connection if there is none yet for the
-	current application context.
-	"""
-	if not hasattr(g, 'sqlite_db'):
-		g.sqlite_db = connect_db()
-	return g.sqlite_db
-
-
-@app.teardown_appcontext
-def close_db(error):
-	"""Closes the database again at the end of the request."""
-	if hasattr(g, 'sqlite_db'):
-		g.sqlite_db.close()
-
 
 @app.route('/calendars')
 def calendars():
@@ -98,6 +61,17 @@ def calendars():
 		hello=hello,
 		all_service_id=all_service_id
 		)
+
+
+@app.route('/updatecalendars', methods=['POST'])
+def updatecalendars():
+	# print('here')
+	resp = request.get_json()
+	# print(request.get_json())
+	gtfs_calendar = FeedDates()
+	gtfs_calendar.create_new_calendar_file(resp)
+	return render_template('show_entries.html')
+
 
 @app.route('/')
 def show_entries():

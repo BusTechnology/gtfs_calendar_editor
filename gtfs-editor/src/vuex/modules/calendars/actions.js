@@ -6,6 +6,7 @@ import {
   DESELECT_CALENDAR,
   ACTIVATE_CALENDAR,
   DEACTIVATE_CALENDAR
+  // UPDATE_CALENDAR
 } from './mutation-types'
 
 export function fetchCalendars ({ commit }) {
@@ -13,9 +14,11 @@ export function fetchCalendars ({ commit }) {
     .then((response) => commit(FETCH_CALENDARS, response.body))
 }
 
-export function updateCalendar ({ commit }, calendar) {
-  return http.put(`calendars/${calendar}`, calendar)
-    .then((response) => commit(SELECT_CALENDAR, response.body.data))
+export function updateCalendar ({ commit, state }, calendar) {
+  console.log(state.all.full_calendar[calendar.d])
+  return http.post('updatecalendars', {calendar: calendar}).then((response) => {
+    response.status
+  })
 }
 
 export function selectSrvToActivate ({ commit, state }, cal) {

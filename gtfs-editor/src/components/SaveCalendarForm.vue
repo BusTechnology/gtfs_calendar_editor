@@ -22,8 +22,8 @@
         <button type="button" class="btn btn-default" aria-label="Left Align" v-on:click.prevent="onDeactivate(selected)" v-if="selected.length>0">
           Deactivate
         </button>
-        <button type="submit" class="btn btn-success">Submit</button>
-        <button type="submit" class="btn btn-warning">Cancel</button>
+        <button type="submit" class="btn btn-success" v-on:click.prevent="onSubmit(calendarToEdit)">Submit Changes</button>
+        <!-- <button type="submit" class="btn btn-warning">Cancel</button> -->
       </div>
       <div class="form-group col-md-4">
         <label for="price">Inactive Service</label>
@@ -59,12 +59,12 @@
       },
       onDeactivate (selected) {
         this.$emit('deactivate', this.selected)
+      },
+      onSubmit () {
+        // if (this.validateForm()) {
+        this.$emit('submit', this.calendar)
+        // }
       }
-      // onSubmit() {
-      //   // if (this.validateForm()) {
-      //   this.$emit('submit', this.calendarToEdit)
-      //   // }
-      // }
     }
 
   //   validateForm() {

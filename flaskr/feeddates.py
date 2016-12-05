@@ -1,4 +1,7 @@
+import os
 import mzgtfs.feed
+import zipfile
+import time
 from gtfsHandler import GtfsHandler
 
 path = "flaskr/gtfs_files/"
@@ -32,3 +35,39 @@ class FeedDates():
 		all_service_id = gtfs_calendar.get_service_id(self.gtfs_feed)
 
 		return all_service_id
+
+	def create_new_calendar_file(self, svcDate):
+		self.load_gtfs()
+		og_cal = self.gtfs_feed.service_exceptions()
+
+		svc_date = svcDate['calendar']['d']
+		active_service = svcDate['calendar']['s']
+		inactive_service = svcDate['calendar']['i']
+
+		for entry in og_cal:
+			
+			if entry.get('date') == svc_date:
+				s_id = entry.get('service_id')
+				e_type = entry.get('exception_type') 
+				
+				for svc in active_service:
+					if s_id == svc and e_type == '2':
+						entry.set('exception_type', '1')
+
+				for svc in inactive_service:
+					if s_id == svc and e_type == '1':
+						entry.set('exception_type', '2')
+						
+		for entry in og_cal:
+			if entry.get('date') == svc_date:
+				print(entry.get('service_id'))
+				print(entry.get('exception_type'))
+
+		ts = str(int(time.time()))
+
+		self.gtfs_feed.write('calendar' + ts + '.txt', og_cal)
+		for filename in os.listdir("."):
+			if filename.startswith("calendar"):
+				os.rename(filename, filename[:8] + '.txt')
+		self.gtfs_feed.make_zip(ts + '.zip', files=['calendar.txt'])
+

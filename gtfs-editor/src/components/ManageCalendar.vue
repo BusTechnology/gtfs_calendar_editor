@@ -4,6 +4,7 @@
       :calendarToEdit="calendarToEdit"
       v-on:activate="onActivate"
       v-on:deactivate="onDeactivate"
+      v-on:submit="onSubmit"
     ></save-calendar-form>
     <calendars
       :calendars="calendars"
@@ -40,7 +41,8 @@ export default {
       'selectSrvToActivate',
       'activateCalendar',
       'selectSrvToDeactivate',
-      'deactivateCalendar'
+      'deactivateCalendar',
+      'updateCalendar'
     ]),
     onEditClicked (calendarToEdit) {
       this.calendarToEdit = { ...calendarToEdit }
@@ -56,10 +58,10 @@ export default {
     },
     deactivateCalendarInForm () {
       this.deactivateCalendar(this.calendarToEdit)
+    },
+    onSubmit (calendar) {
+      this.updateCalendar(this.calendarToEdit)
     }
-    // onSubmit(product) {
-    //   this.saveBundle().then(() => this.resetProductInForm())
-    // }
   }
 }
 </script>
