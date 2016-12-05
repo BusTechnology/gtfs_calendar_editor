@@ -1,5 +1,6 @@
 <template>
   <section>
+    <datepicker placeholder="Select Date"></datepicker>
     <save-calendar-form
       :calendarToEdit="calendarToEdit"
       v-on:activate="onActivate"
@@ -17,6 +18,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import Calendars from './Calendars'
 import SaveCalendarForm from './SaveCalendarForm'
+import Datepicker from 'vuejs-datepicker'
 
 const initialData = () => {
   return {
@@ -30,7 +32,8 @@ const initialData = () => {
 export default {
   components: {
     Calendars,
-    SaveCalendarForm
+    SaveCalendarForm,
+    Datepicker
   },
   data: initialData,
   computed: mapGetters({
