@@ -1,0 +1,4 @@
+export FLASK_APP=flaskr
+flask run &
+cd gtfs-editor
+npm run dev

@@ -18,7 +18,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import Calendars from './Calendars'
 import SaveCalendarForm from './SaveCalendarForm'
-import Datepicker from 'vuejs-datepicker'
+import Datepicker from './DatePicker'
 
 const initialData = () => {
   return {
