@@ -7,7 +7,6 @@ import {
   DESELECT_CALENDAR,
   ACTIVATE_CALENDAR,
   DEACTIVATE_CALENDAR
-  // UPDATE_CALENDAR
 } from './mutation-types'
 
 // initial state
@@ -50,10 +49,6 @@ const mutations = {
     calendar.s = activeSrv
     calendar.i = inactiveSrv
   }
-  // [UPDATE_CALENDAR] (state, calendars) {
-  //   console.log(calendars)
-  // }
-
 }
 
 export default {

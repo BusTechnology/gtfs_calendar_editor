@@ -11,7 +11,12 @@ import {
 
 export function fetchCalendars ({ commit }) {
   return http.get('calendars')
-    .then((response) => commit(FETCH_CALENDARS, response.body))
+    .then((response) => {
+      if (response.status === 200) {
+        console.log('Calendars successfully loaded')
+      }
+      commit(FETCH_CALENDARS, response.body)
+    })
 }
 
 export function updateCalendar ({ commit, state }, calendar) {

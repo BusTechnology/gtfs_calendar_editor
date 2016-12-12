@@ -1,6 +1,5 @@
 <template>
   <div class="calendars">
-  <!-- <span>{{calendars.full_calendar}}</span> -->
   <table class="table table-hover product-table">
     <thead>
       <tr>
@@ -13,13 +12,7 @@
       <tr v-for="svc_id, cal_date in calendars.full_calendar" v-on:click="onEdit(svc_id, cal_date, calendars.all_service_id)" v-if="svc_id.length!==0">
         <td>{{cal_date}}</td>
         <td>{{svc_id}}</td>
-        <!-- <td><a href="#" v-on:click.prevent.stop="onRemove(product.id)">remove</a></td> -->
       </tr>
-      <!-- <tr v-if="!products.length">
-        <td colspan="4" class="p-y-3 text-xs-center">
-          <strong>You should add some products!</strong>
-        </td>
-      </tr> -->
     </tbody>
   </table>
 
@@ -30,7 +23,6 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  // name: 'calendars',
   computed: mapGetters({
     calendars: 'getCalendars'
   }),

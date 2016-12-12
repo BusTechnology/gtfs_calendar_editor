@@ -4,11 +4,12 @@
     <div class="example">
       <h3>Choose date to edit:</h3>
       <datepicker v-model="eventMsg" :inline="true" :format="format"></datepicker>
-        <button type="button" class="btn btn-default" aria-label="Left Align" v-on:click.prevent="onDate(eventMsg)">
-          Select Calendar
+        <!-- <a name="calForm" href="#calform"> -->
+        <button type="button" class="btn btn-default" aria-label="Left Align">Select Calendar  
+        <!-- <a name="calForm" href="#calform"><button type="button" class="btn btn-default" aria-label="Left Align" v-on:click.prevent="onDate(eventMsg)">Select Calendar   -->
         </button>
+        <!-- </a> -->
     </div>
-    <div>{{ eventMsg }}</div>
   </div>
 </template>
 

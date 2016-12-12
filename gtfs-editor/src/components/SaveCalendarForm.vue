@@ -1,6 +1,6 @@
 <template>
   <form>
-    <div class="form-group col-md-12" v-bind:class="[{ 'has-danger': formErrors.name }]">
+    <div id="calform" class="form-group col-md-12" v-bind:class="[{ 'has-danger': formErrors.name }]">
       <label for="calendarName">Calendar Date</label>
       <input type="text" v-model="calendarToEdit.d" class="form-control" id="calendarName" maxlength="32" placeholder="Enter calendar name">
       <div v-if="formErrors.name" class="form-control-feedback">{{formErrors.name}}</div>
