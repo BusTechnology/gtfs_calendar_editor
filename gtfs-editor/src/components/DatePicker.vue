@@ -1,20 +1,14 @@
 <template>
   <div id="app">
-  <h1>Datepicker</h1>
-  <div class="example">
-    <h3>Events</h3>
-    <datepicker name="eventtest"></datepicker>
-    <div class="settings">
-      <h5>Output</h5>
-      <div class="form-group">
-        <p>{{ eventMsg }}</p>
-      </div>
+  <h1>GTFS Calendar Editor</h1>
+    <div class="example">
+      <h3>Choose date to edit:</h3>
+      <datepicker v-model="eventMsg" :inline="true" :format="format"></datepicker>
+        <button type="button" class="btn btn-default" aria-label="Left Align" v-on:click.prevent="onDate(eventMsg)">
+          Select Calendar
+        </button>
     </div>
-  </div>
-  <div class="example">
-    <h3>Inline datepicker</h3>
-    <datepicker :inline="true"></datepicker>
-  </div>
+    <div>{{ eventMsg }}</div>
   </div>
 </template>
 
@@ -26,22 +20,23 @@
   }
 
   export default {
-    // props: ['format'],
     components: {
       Datepicker
     },
+    methods: {
+      onDate: function (val) {
+        var dateToEdit = {'d': val}
+        this.$emit('date', dateToEdit)
+      }
+    },
     data () {
       return {
-        format: 'd MMMM yyyy',
+        // dateToEdit: null,
+        format: 'yyyyMMdd',
         disabled: {},
         eventMsg: null,
         state: state
       }
-    },
-    ready () {
-      this.$on('datepicker.eventtest', (val) => {
-        this.eventMsg = 'Date picked! ' + new Date(val.value)
-      })
     }
   }
 </script>

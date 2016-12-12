@@ -5,13 +5,14 @@ import time
 from gtfsHandler import GtfsHandler
 
 path = "flaskr/gtfs_files/"
-boroughs = ['staten_island', 'brooklyn', 'manhattan', 'queens', 'bronx']
+boroughs = ['_staten_island', '_queens', '_manhattan', '_bronx', '_brooklyn']
 gtfs_calendar = GtfsHandler()
 
 class FeedDates():
 
 	def load_gtfs(self):
-		self.gtfs_file = path + 'google_transit_' + boroughs[0] + '.zip'
+		self.gtfs_file = path + 'google_transit' + boroughs[0] + '.zip'
+		# self.gtfs_file = path + 'google_transit' + '.zip'
 		self.gtfs_feed = mzgtfs.feed.Feed(filename=self.gtfs_file)
 
 	def get_calendar_bookends(self):
