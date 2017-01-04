@@ -43,7 +43,7 @@ const mutations = {
 
     for (var i = 0; i < state.all.svcToDeactivate.length; i++) {
       var index = activeSrv.indexOf(state.all.svcToDeactivate[i])
-      inactiveSrv.push(state.all.svcToActivate[i])
+      inactiveSrv.push(state.all.svcToDeactivate[i])
       activeSrv.splice(index, 1)
     }
     calendar.s = activeSrv

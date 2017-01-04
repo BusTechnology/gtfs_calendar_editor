@@ -147,7 +147,8 @@ class GtfsHandler():
 
 				if item.get('exception_type') == '1':
 					cal_to_modify = calendars.get(service_date)
-					cal_to_modify.append(str(item.get('service_id')))
+					if item.get('service_id') not in cal_to_modify: 
+						cal_to_modify.append(str(item.get('service_id')))
 		except TypeError:
 			date_to_modify = None	
 

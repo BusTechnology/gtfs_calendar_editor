@@ -11,7 +11,9 @@ gtfs_calendar = GtfsHandler()
 class FeedDates():
 
 	def load_gtfs(self):
+		# for NYCT bus
 		self.gtfs_file = path + 'google_transit' + boroughs[0] + '.zip'
+		# for MTABC
 		# self.gtfs_file = path + 'google_transit' + '.zip'
 		self.gtfs_feed = mzgtfs.feed.Feed(filename=self.gtfs_file)
 
@@ -66,9 +68,13 @@ class FeedDates():
 
 		ts = str(int(time.time()))
 
-		self.gtfs_feed.write('calendar' + ts + '.txt', og_cal)
+		self.gtfs_feed.write('calendar_dates' + ts + '.txt', og_cal)
+		self.gtfs_feed.write('calendar' + ts + '.txt', self.gtfs_feed.serviceperiods())
 		for filename in os.listdir("."):
-			if filename.startswith("calendar"):
+			if filename.startswith("calendar_dates"):
+				os.rename(filename, filename[:14] + '.txt')
+			elif filename.startswith("calendar"):
 				os.rename(filename, filename[:8] + '.txt')
-		self.gtfs_feed.make_zip(ts + '.zip', files=['calendar.txt'])
+		self.gtfs_feed.make_zip('google_transit' + boroughs[0] + '.zip', files=['calendar.txt', 'calendar_dates.txt'])
+		os.rename("google_transit" + boroughs[0] + ".zip", "flaskr/gtfs_files/google_transit" + boroughs[0] + ".zip")
 

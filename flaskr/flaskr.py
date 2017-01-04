@@ -51,23 +51,17 @@ def calendars():
 
 	datepicker = DatePicker()
 
-	# hello = datepicker.get_cal_for_date('20161010')
-	hello = datepicker.deactivate_cal_for_date('20161010')
-
 	return jsonify(
 		start_date=start_and_ends['start_date'],
 		end_date=start_and_ends['end_date'],
 		full_calendar=full_calendar,
-		hello=hello,
 		all_service_id=all_service_id
 		)
 
 
 @app.route('/updatecalendars', methods=['POST'])
 def updatecalendars():
-	# print('here')
 	resp = request.get_json()
-	# print(request.get_json())
 	gtfs_calendar = FeedDates()
 	gtfs_calendar.create_new_calendar_file(resp)
 	return render_template('show_entries.html')
