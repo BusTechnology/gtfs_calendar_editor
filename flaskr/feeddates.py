@@ -76,5 +76,7 @@ class FeedDates():
 			elif filename.startswith("calendar"):
 				os.rename(filename, filename[:8] + '.txt')
 		self.gtfs_feed.make_zip('google_transit' + boroughs[0] + '.zip', files=['calendar.txt', 'calendar_dates.txt'])
+		os.remove("calendar.txt")
+		os.remove("calendar_dates.txt")
 		os.rename("google_transit" + boroughs[0] + ".zip", "flaskr/gtfs_files/google_transit" + boroughs[0] + ".zip")
 
