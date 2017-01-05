@@ -1,14 +1,12 @@
 <template>
   <div id="app">
-  <h1>GTFS Calendar Editor</h1>
-    <div class="example">
+    <h1>GTFS Calendar Editor</h1>
+    <div class="cal-wrapper">
       <h3>Choose date to edit:</h3>
       <datepicker v-model="eventMsg" :inline="true" :format="format"></datepicker>
-        <!-- <a name="calForm" href="#calform"> -->
-        <!-- <button type="button" class="btn btn-default" aria-label="Left Align">Select Calendar   -->
-        <a name="calForm" href="#calform"><button type="button" class="btn btn-default" aria-label="Left Align" v-on:click.prevent="onDate(eventMsg)">Select Calendar  
-        </button>
-        <!-- </a> -->
+      <button type="button" class="btn btn-default" aria-label="Left Align" v-on:click.prevent="onDate(eventMsg)">
+        Select Calendar  
+      </button>
     </div>
   </div>
 </template>
@@ -32,7 +30,6 @@
     },
     data () {
       return {
-        // dateToEdit: null,
         format: 'yyyyMMdd',
         disabled: {},
         eventMsg: null,
@@ -58,7 +55,7 @@
     height: 2.5em;
   }
 
-  .example {
+  .cal-wrapper {
     background: #f2f2f2;
     border: 1px solid #ddd;
     padding: 0em 1em 1em;
