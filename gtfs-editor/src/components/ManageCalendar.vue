@@ -14,7 +14,9 @@
       :calendars="calendars"
       v-on:edit="onEditClicked"
     ></calendars>
-    <modal></modal>
+    <modal
+      :showModal="showModal"
+    ></modal>
   </section>
 </template>
 
@@ -33,6 +35,9 @@ const initialData = () => {
     },
     dateToEdit: {
       d: null
+    },
+    showModal: {
+      i: false
     }
   }
 }

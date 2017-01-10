@@ -1,8 +1,56 @@
 <template>
-  <button id="show-modal">Show Modal</button>
+  <div class="modal-container">
+    <button v-on:click.prevent="onAlert('hello')">Show Modal</button>
+    <transition name="modal">
+    <div class="modal-mask" v-if="showModal.i">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+
+          <div class="modal-header">
+            <slot name="header">
+              default header
+            </slot>
+          </div>
+
+          <div class="modal-body">
+            <slot name="body">
+              default body
+            </slot>
+          </div>
+
+          <div class="modal-footer">
+            <slot name="footer">
+              default footer
+              <button class="modal-default-button" v-on:click.prevent="onClose()">
+                OK
+              </button>
+            </slot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </transition>
+  </div>
 </template>
 
+<script>
+  export default {
+    props: ['showModal'],
+    methods: {
+      onAlert () {
+        this.showModal.i = true
+      },
+      onClose () {
+        this.showModal.i = false
+      }
+    }
+  }
+</script>
+
 <style>
+.modal {
+  display: inline-block;
+}
 .modal-mask {
   position: fixed;
   z-index: 9998;
