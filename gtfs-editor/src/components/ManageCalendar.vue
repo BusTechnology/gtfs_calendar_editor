@@ -4,6 +4,9 @@
       :dateToEdit="dateToEdit"
       v-on:date="onDateSelected"
     ></datepicker>
+    <modal
+      :showModal="showModal"
+    ></modal>
     <save-calendar-form
       :calendarToEdit="calendarToEdit"
       v-on:activate="onActivate"
@@ -14,9 +17,6 @@
       :calendars="calendars"
       v-on:edit="onEditClicked"
     ></calendars>
-    <modal
-      :showModal="showModal"
-    ></modal>
   </section>
 </template>
 
@@ -37,7 +37,8 @@ const initialData = () => {
       d: null
     },
     showModal: {
-      i: false
+      i: false,
+      datesMod: []
     }
   }
 }
@@ -63,7 +64,9 @@ export default {
     ]),
     onEditClicked (calendarToEdit) {
       this.calendarToEdit = { ...calendarToEdit }
+      this.showModal.datesMod.push(calendarToEdit.d)
       console.log(calendarToEdit)
+      console.log(this.showModal.datesMod)
     },
     onDateSelected (dateToEdit) {
       this.dateToEdit = { ...dateToEdit }

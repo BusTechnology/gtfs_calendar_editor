@@ -8,19 +8,18 @@
 
           <div class="modal-header">
             <slot name="header">
-              default header
+              Edits to be committed
             </slot>
           </div>
 
           <div class="modal-body">
-            <slot name="body">
-              default body
+            <slot name="body" v-for="d in showModal.datesMod">
+            {{ d }}
             </slot>
           </div>
 
           <div class="modal-footer">
             <slot name="footer">
-              default footer
               <button class="modal-default-button" v-on:click.prevent="onClose()">
                 OK
               </button>
