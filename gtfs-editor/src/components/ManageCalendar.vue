@@ -14,6 +14,7 @@
       :calendars="calendars"
       v-on:edit="onEditClicked"
     ></calendars>
+    <modal></modal>
   </section>
 </template>
 
@@ -22,6 +23,7 @@ import { mapGetters, mapActions } from 'vuex'
 import Calendars from './Calendars'
 import SaveCalendarForm from './SaveCalendarForm'
 import Datepicker from './DatePicker'
+import Modal from './Modal'
 
 const initialData = () => {
   return {
@@ -39,7 +41,8 @@ export default {
   components: {
     Calendars,
     SaveCalendarForm,
-    Datepicker
+    Datepicker,
+    Modal
   },
   data: initialData,
   computed: mapGetters({
