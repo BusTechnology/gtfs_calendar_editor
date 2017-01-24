@@ -1,6 +1,6 @@
 <template>
   <div class="modal-container">
-    <button v-on:click.prevent="onAlert('hello')">Show Modal</button>
+    <button v-on:click.prevent="onAlert('hello')">Show Changes</button>
     <transition name="modal">
     <div class="modal-mask" v-if="showModal.i">
       <div class="modal-wrapper">
@@ -14,7 +14,7 @@
 
           <div class="modal-body">
             <slot name="body" v-for="d in showModal.datesMod">
-            {{ d }}
+              <div>{{ d }}</div>
             </slot>
           </div>
 

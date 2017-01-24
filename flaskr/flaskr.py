@@ -24,20 +24,11 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 CORS(app)
 
-# Load default config and override config from an environment variable
-app.config.update(dict(
-	DATABASE=os.path.join(app.root_path, 'flaskr.db'),
-	DEBUG=True,
-	SECRET_KEY='development key',
-	USERNAME='admin',
-	PASSWORD='default'
-))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 @app.route('/templates/<path:path>')
 def send_static(path):
     return send_from_directory('templates', path)
-
 
 @app.route('/calendars')
 def calendars():
@@ -58,49 +49,9 @@ def calendars():
 		all_service_id=all_service_id
 		)
 
-
 @app.route('/updatecalendars', methods=['POST'])
 def updatecalendars():
 	resp = request.get_json()
 	gtfs_calendar = FeedDates()
 	gtfs_calendar.create_new_calendar_file(resp)
-	return render_template('show_entries.html')
-
-
-@app.route('/')
-def show_entries():
-	return render_template('show_entries.html')
-
-
-@app.route('/add', methods=['POST'])
-def add_entry():
-	if not session.get('logged_in'):
-		abort(401)
-	db = get_db()
-	db.execute('insert into entries (title, text) values (?, ?)',
-			   [request.form['title'], request.form['text']])
-	db.commit()
-	flash('New entry was successfully posted')
-	return redirect(url_for('show_entries'))
-
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-	error = None
-	if request.method == 'POST':
-		if request.form['username'] != app.config['USERNAME']:
-			error = 'Invalid username'
-		elif request.form['password'] != app.config['PASSWORD']:
-			error = 'Invalid password'
-		else:
-			session['logged_in'] = True
-			flash('You were logged in')
-			return redirect(url_for('show_entries'))
-	return render_template('login.html', error=error)
-
-
-@app.route('/logout')
-def logout():
-	session.pop('logged_in', None)
-	flash('You were logged out')
-	return redirect(url_for('show_entries'))
+	return
