@@ -4,6 +4,9 @@
       :dateToEdit="dateToEdit"
       v-on:date="onDateSelected"
     ></datepicker>
+    <modal
+      :showModal="showModal"
+    ></modal>
     <save-calendar-form
       :calendarToEdit="calendarToEdit"
       v-on:activate="onActivate"
@@ -22,6 +25,7 @@ import { mapGetters, mapActions } from 'vuex'
 import Calendars from './Calendars'
 import SaveCalendarForm from './SaveCalendarForm'
 import Datepicker from './DatePicker'
+import Modal from './Modal'
 
 const initialData = () => {
   return {
@@ -31,6 +35,10 @@ const initialData = () => {
     },
     dateToEdit: {
       d: null
+    },
+    showModal: {
+      i: false,
+      datesMod: []
     }
   }
 }
@@ -39,7 +47,8 @@ export default {
   components: {
     Calendars,
     SaveCalendarForm,
-    Datepicker
+    Datepicker,
+    Modal
   },
   data: initialData,
   computed: mapGetters({
@@ -55,7 +64,9 @@ export default {
     ]),
     onEditClicked (calendarToEdit) {
       this.calendarToEdit = { ...calendarToEdit }
+      this.showModal.datesMod.push(calendarToEdit.d)
       console.log(calendarToEdit)
+      console.log(this.showModal.datesMod)
     },
     onDateSelected (dateToEdit) {
       this.dateToEdit = { ...dateToEdit }

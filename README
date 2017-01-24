@@ -1,17 +1,15 @@
-                         / Flaskr /
+                         / GTFS Calendar Editor / 
 
-                 a minimal blog application
+                 a VueJS application to modify the GTFS calendar files
 
 
-    ~ What is Flaskr?
+    ~ What is purpose of the GTFS Calendar Editor?
 
-      A sqlite powered thumble blog application
+      Oftentimes, the GTFS bundle has issues that stem from incorrect or missing service on a particular day on a particular route. Bus service is scheduled based a number of factors which include ridership numbers, bus stop location, and the service date. Here is where the GTFS Calendar Editor comes into play. It gives the user an efficient and effective way to view, modify, and repackage the GTFS calendar files with the correct service for a date or a range of dates.  
 
     ~ How do I use it?
 
-      1. edit the configuration in the flaskr.py file or
-         export an FLASKR_SETTINGS environment variable
-         pointing to a configuration file.
+      1. clone the repo
 
       2. install the app from the root of the project directory
 
