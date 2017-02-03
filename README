@@ -9,28 +9,45 @@
 
     ~ How do I use it?
 
-      1. clone the repo
+      1. Clone the repo
 
-      2. install the app from the root of the project directory
+         git clone https://github.com/willwong430/gtfs_calendar_app.git
 
-         pip install --editable .
+      2. Go into the project directory
 
-      3. Instruct flask to use the right application
+        cd gtfs_calendar_app/
 
-         export FLASK_APP=flaskr
+      3. Install dependencies
 
-      4. initialize the database with this command:
+          a)  The PyPA recommended tool for installing Python packages.
+         
+            apt install python-pip
 
-         flask initdb
+          b)  Flask is a microframework for Python based on Werkzeug, Jinja 2 and good intentions.
+            
+            pip install Flask
 
-      5. now you can run flaskr:
+          c)  Flask extension for handling Cross Origin Resource Sharing (CORS)
 
-         flask run
+            pip install -U flask-cors
 
-         the application will greet you on
+          d)  Mapzen's GTFS parser
+
+            pip install mzgtfs
+
+          e)  The package manager for JavaScript. 
+
+            apt install npm
+
+
+      4. From command line, run the script to start up the app
+
+         ./runserver
+
+      5. The application will greet you on
          http://localhost:5000/
 
     ~ Is it tested?
 
-      You betcha.  Run `python setup.py test` to see
+      You betcha.  Run `python tests/calendar_tests.py` to see
       the tests pass.
