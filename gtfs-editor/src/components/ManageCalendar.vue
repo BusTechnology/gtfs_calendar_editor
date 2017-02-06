@@ -65,8 +65,9 @@ export default {
     onEditClicked (calendarToEdit) {
       this.calendarToEdit = { ...calendarToEdit }
       this.showModal.datesMod.push(calendarToEdit.d)
-      console.log(calendarToEdit)
-      console.log(this.showModal.datesMod)
+      // console.log('calendarToEdit')
+      // console.log(calendarToEdit)
+      // console.log(this.showModal.datesMod)
     },
     onDateSelected (dateToEdit) {
       this.dateToEdit = { ...dateToEdit }
@@ -79,7 +80,7 @@ export default {
         day = '0' + day
       }
       var gtfsDate = dateToEdit.d.getFullYear() + '' + month + '' + day
-      console.log(gtfsDate)
+      // console.log(gtfsDate)
       var active = this.calendars.full_calendar[gtfsDate]
       var inactive = this.calendars.all_service_id.slice(0)
       for (var i = 0; i < active.length; i++) {

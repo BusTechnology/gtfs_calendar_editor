@@ -11,7 +11,6 @@
 """
 
 import os
-from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, Response, session, g, redirect, url_for, abort, \
 	 render_template, flash, send_from_directory, jsonify
 
@@ -54,4 +53,4 @@ def updatecalendars():
 	resp = request.get_json()
 	gtfs_calendar = FeedDates()
 	gtfs_calendar.create_new_calendar_file(resp)
-	return
+	return("Update complete")
