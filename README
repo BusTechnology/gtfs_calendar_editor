@@ -1,9 +1,9 @@
                          / GTFS Calendar Editor / 
 
-                 a VueJS application to modify the GTFS calendar files
+  a web application built with a VueJS front-end and a Flask back-end to modify the GTFS calendar files
 
 
-    ~ What is purpose of the GTFS Calendar Editor?
+    ~ What is the purpose of the GTFS Calendar Editor?
 
       Oftentimes, the GTFS bundle has issues that stem from incorrect or missing service on a particular day on a particular route. Bus service is scheduled based a number of factors which include ridership numbers, bus stop location, and the service date. Here is where the GTFS Calendar Editor comes into play. It gives the user an efficient and effective way to view, modify, and repackage the GTFS calendar files with the correct service for a date or a range of dates.  
 
