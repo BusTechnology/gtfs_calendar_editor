@@ -12,3 +12,4 @@ gtfs-editor/test/unit/coverage
 gtfs-editor/test/e2e/reports
 gtfs-editor/selenium-debug.log
 
+build
