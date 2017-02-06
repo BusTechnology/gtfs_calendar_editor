@@ -11,34 +11,27 @@
 
       1. Clone the repo
 
-         git clone https://github.com/willwong430/gtfs_calendar_app.git
+         `git clone https://github.com/BusTechnology/gtfs_calendar_app.git`
 
       2. Go into the project directory
 
-        cd gtfs_calendar_app/
+        `cd gtfs_calendar_app/`
 
-      3. Install dependencies
+      3. Install dependencies if necessary
 
           a)  The PyPA recommended tool for installing Python packages.
          
             apt install python-pip
 
-          b)  Flask is a microframework for Python based on Werkzeug, Jinja 2 and good intentions.
-            
-            pip install Flask
-
-          c)  Flask extension for handling Cross Origin Resource Sharing (CORS)
-
-            pip install -U flask-cors
-
-          d)  Mapzen's GTFS parser
-
-            pip install mzgtfs
-
-          e)  The package manager for JavaScript. 
+          b)  The npm package manager for JavaScript. 
 
             apt install npm
 
+      4. `python setup.py` to install Python dependencies
+
+      5. ```cd gtfs_editor
+            npm install
+            cd .. ```
 
       4. From command line, run the script to start up the app
 
