@@ -113,11 +113,11 @@ class CalendarTestCase(unittest.TestCase):
 		gtfs_calendar_handler.set_up(self.gtfs_feed)
 		cals = gtfs_calendar_handler.get_calendars_for_date('20170101')
 		for c in cals:
-			self.assertTrue('Saturday' in c)
+			self.assertTrue('Sunday' in c)
 
 	def test_deactivate_calendar_dates(self):
 		gtfs_calendar_handler.set_up(self.gtfs_feed)
-		cals = gtfs_calendar_handler.deactivate_calendar('20170101')
+		cals = gtfs_calendar_handler.deactivate_calendar('20170102')
 		for c in cals:
 			self.assertTrue(c.get('exception_type'), '2')
 
