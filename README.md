@@ -38,7 +38,7 @@ Oftentimes, the GTFS has issues that stem from incorrect or missing service on a
    ./runserver
 
 5. The application will greet you on
-   http://localhost:5000/
+   http://localhost:8080/
 
 ~ Is it tested?
 
