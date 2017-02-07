@@ -81,7 +81,7 @@ class CalendarTestCase(unittest.TestCase):
 
 	def test_start_end_dates(self):
 		start_and_end = gtfs_calendar_handler.get_starting_and_ending_dates_for_feed(self.gtfs_feed)
-		self.assertEqual(start_and_end['start_date'], '20160101')
+		self.assertEqual(start_and_end['start_date'], '20160904')
 		self.assertEqual(start_and_end['end_date'], '20170107')
 
 	def test_get_regular_service_date(self):
@@ -111,19 +111,19 @@ class CalendarTestCase(unittest.TestCase):
 
 	def test_get_calendar_date_only(self):
 		gtfs_calendar_handler.set_up(self.gtfs_feed)
-		cals = gtfs_calendar_handler.get_calendars_for_date('20160101')
+		cals = gtfs_calendar_handler.get_calendars_for_date('20170101')
 		for c in cals:
 			self.assertTrue('Saturday' in c)
 
 	def test_deactivate_calendar_dates(self):
 		gtfs_calendar_handler.set_up(self.gtfs_feed)
-		cals = gtfs_calendar_handler.deactivate_calendar('20160101')
+		cals = gtfs_calendar_handler.deactivate_calendar('20170101')
 		for c in cals:
 			self.assertTrue(c.get('exception_type'), '2')
 
 	def test_activate_calendar_dates(self):
 		gtfs_calendar_handler.set_up(self.gtfs_feed)
-		cals = gtfs_calendar_handler.activate_calendar('YU_D6-Sunday','20160102')
+		cals = gtfs_calendar_handler.activate_calendar('YU_D6-Sunday','20170102')
 		# print cals['20160102']
 		for k, v in cals.iteritems():
 			if k == "exception_type":

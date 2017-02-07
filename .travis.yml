@@ -5,6 +5,7 @@ branches:
   only:
     - master
 sudo: required
-script: 
-  - cd ~/flaskr/
+script:
+  - cd ./flaskr/
+  - pwd 
   - python ./tests/calendar_tests.py
