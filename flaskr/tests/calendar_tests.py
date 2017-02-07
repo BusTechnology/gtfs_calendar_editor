@@ -9,7 +9,7 @@ import time
 from gtfsHandler import GtfsHandler 
 
 boroughs = ['staten_island']
-path = "../flaskr/gtfs_files/"
+path = "gtfs_files/"
 gtfs_calendar_handler = GtfsHandler()
 reg_service = '20160927'
 
