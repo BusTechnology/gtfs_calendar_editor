@@ -7,10 +7,7 @@ setup(
     install_requires=[
         'Flask','flask-cors','mzgtfs'
     ],
-    setup_requires=[
-        'pytest-runner',
-    ],
     tests_require=[
-        'pytest',
+        'unittest',
     ],
 )
