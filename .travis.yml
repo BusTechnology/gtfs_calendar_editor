@@ -6,6 +6,7 @@ branches:
     - master
 sudo: required
 script:
+  - pwd
   - cd flaskr/
   - pwd
   - ls
