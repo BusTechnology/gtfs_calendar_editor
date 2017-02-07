@@ -5,3 +5,5 @@ python:
 branches:
   only:
     - master
+sudo: required
+script: pytest
