@@ -6,6 +6,7 @@ branches:
     - master
 sudo: required
 script:
+  - sudo python setup.py install
   - pwd
   - cd flaskr/
   - pwd
