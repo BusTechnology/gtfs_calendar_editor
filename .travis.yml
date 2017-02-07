@@ -7,4 +7,4 @@ branches:
 sudo: required
 script: 
   - cd ./flaskr
-  - python tests/calendar_tests.py
+  - python ./tests/calendar_tests.py
