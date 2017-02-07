@@ -6,7 +6,7 @@ import mzgtfs.feed
 import zipfile
 import time
 
-from flaskr.gtfsHandler import GtfsHandler 
+from gtfsHandler import GtfsHandler 
 
 boroughs = ['staten_island']
 path = "tests/gtfs_files/"
