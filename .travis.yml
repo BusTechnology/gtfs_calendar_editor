@@ -5,4 +5,4 @@ branches:
   only:
     - master
 sudo: required
-script: unittest
+script: py.test
