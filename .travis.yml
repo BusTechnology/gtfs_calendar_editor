@@ -6,6 +6,6 @@ branches:
     - master
 sudo: required
 script:
-  - cd ./flaskr/
-  - pwd 
-  - python ./tests/calendar_tests.py
+  - cd flaskr/
+  - pwd
+  - python tests/calendar_tests.py
