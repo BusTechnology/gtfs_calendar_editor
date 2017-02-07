@@ -14,24 +14,24 @@ gtfs_calendar_handler = GtfsHandler()
 reg_service = '20160927'
 
 SI_trips_by_service_id = [
-	{'trip_count': 990, 'service_id':'CA_D6-Saturday'}, 
-	{'trip_count': 865, 'service_id':'CA_D6-Sunday'},
-	{'trip_count': 1714, 'service_id': 'CA_D6-Weekday'},
-	{'trip_count': 1787, 'service_id': 'CA_D6-Weekday-SDon'},
-	{'trip_count': 1445, 'service_id': 'CA_S6-Weekday'},
- 	{'trip_count': 372, 'service_id': 'CH_D6-Saturday'},
+	{'trip_count': 990, 'service_id':'CA_A7-Saturday'}, 
+	{'trip_count': 865, 'service_id':'CA_A7-Sunday'},
+	{'trip_count': 1714, 'service_id': 'CA_A7-Weekday'},
+	{'trip_count': 1789, 'service_id': 'CA_A7-Weekday-SDon'},
+	{'trip_count': 1445, 'service_id': 'CA_H7-Weekday'},
+ 	{'trip_count': 372, 'service_id': 'CH_A7-Saturday'},
  	{'trip_count': 323, 'service_id': 'CH_D6-Sunday'},
  	{'trip_count': 793, 'service_id': 'CH_D6-Weekday'},
- 	{'trip_count': 842, 'service_id': 'CH_D6-Weekday-SDon'},
- 	{'trip_count': 560, 'service_id': 'CH_S6-Weekday'},
- 	{'trip_count': 164, 'service_id': 'MA_D6-Weekday'},
- 	{'trip_count': 164, 'service_id': 'MA_D6-Weekday-SDon'},
-  	{'trip_count': 84, 'service_id': 'MA_S6-Weekday'},
- 	{'trip_count': 911, 'service_id': 'YU_D6-Saturday'},
- 	{'trip_count': 738, 'service_id': 'YU_D6-Sunday'},
-	{'trip_count': 1393, 'service_id': 'YU_D6-Weekday'},
-	{'trip_count': 1462, 'service_id': 'YU_D6-Weekday-SDon'},
-	{'trip_count': 1096, 'service_id': 'YU_S6-Weekday'}
+ 	{'trip_count': 841, 'service_id': 'CH_A7-Weekday-SDon'},
+ 	{'trip_count': 558, 'service_id': 'CH_H7-Weekday'},
+ 	{'trip_count': 168, 'service_id': 'MA_A7-Weekday'},
+ 	{'trip_count': 168, 'service_id': 'MA_A7-Weekday-SDon'},
+  	{'trip_count': 84, 'service_id': 'MA_H7-Weekday'},
+ 	{'trip_count': 911, 'service_id': 'YU_A7-Saturday'},
+ 	{'trip_count': 738, 'service_id': 'YU_A7-Sunday'},
+	{'trip_count': 1395, 'service_id': 'YU_A7-Weekday'},
+	{'trip_count': 1464, 'service_id': 'YU_A7-Weekday-SDon'},
+	{'trip_count': 1096, 'service_id': 'YU_H7-Weekday'}
 ]
 
 class CalendarTestCase(unittest.TestCase):
@@ -81,19 +81,19 @@ class CalendarTestCase(unittest.TestCase):
 
 	def test_start_end_dates(self):
 		start_and_end = gtfs_calendar_handler.get_starting_and_ending_dates_for_feed(self.gtfs_feed)
-		self.assertEqual(start_and_end['start_date'], '20160101')
-		self.assertEqual(start_and_end['end_date'], '20170107')
+		self.assertEqual(start_and_end['start_date'], '20170108')
+		self.assertEqual(start_and_end['end_date'], '20170401')
 
 	def test_get_regular_service_date(self):
 		#list of calendars that are active
 		gtfs_calendar_handler.set_up(self.gtfs_feed)
-		cals = gtfs_calendar_handler.get_calendars_for_date('20160927')
+		cals = gtfs_calendar_handler.get_calendars_for_date('20170227')
 		for c in cals:
 			self.assertTrue('SD' in c )
 
 	def test_get_modified_service_date(self):
 		gtfs_calendar_handler.set_up(self.gtfs_feed)
-		cals = gtfs_calendar_handler.get_calendar_dates_for_date(self.gtfs_feed, '20161010')
+		cals = gtfs_calendar_handler.get_calendar_dates_for_date(self.gtfs_feed, '20170116')
 		for c in cals:
 			self.assertTrue('SD' not in c)
 
@@ -111,19 +111,19 @@ class CalendarTestCase(unittest.TestCase):
 
 	def test_get_calendar_date_only(self):
 		gtfs_calendar_handler.set_up(self.gtfs_feed)
-		cals = gtfs_calendar_handler.get_calendars_for_date('20160101')
+		cals = gtfs_calendar_handler.get_calendars_for_date('20170116')
 		for c in cals:
-			self.assertTrue('Saturday' in c)
+			self.assertTrue('Weekday' in c)
 
 	def test_deactivate_calendar_dates(self):
 		gtfs_calendar_handler.set_up(self.gtfs_feed)
-		cals = gtfs_calendar_handler.deactivate_calendar('20160101')
+		cals = gtfs_calendar_handler.deactivate_calendar('20170116')
 		for c in cals:
 			self.assertTrue(c.get('exception_type'), '2')
 
 	def test_activate_calendar_dates(self):
 		gtfs_calendar_handler.set_up(self.gtfs_feed)
-		cals = gtfs_calendar_handler.activate_calendar('YU_D6-Sunday','20160102')
+		cals = gtfs_calendar_handler.activate_calendar('YU_D6-Sunday','20170109')
 		# print cals['20160102']
 		for k, v in cals.iteritems():
 			if k == "exception_type":
