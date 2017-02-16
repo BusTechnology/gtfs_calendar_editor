@@ -2,19 +2,27 @@ import os
 import mzgtfs.feed
 import zipfile
 import time
+import sys
 from gtfsHandler import GtfsHandler
 
+import userInput
+
 path = "flaskr/gtfs_files/"
-boroughs = ['_staten_island', '_queens', '_manhattan', '_bronx', '_brooklyn']
+boroughs = ['staten_island', 'queens', 'manhattan', 'bronx', 'brooklyn', 'mtabc']
 gtfs_calendar = GtfsHandler()
 
 class FeedDates():
 
 	def load_gtfs(self):
-		# for NYCT bus
-		self.gtfs_file = path + 'google_transit' + boroughs[0] + '.zip'
-		# for MTABC
-		# self.gtfs_file = path + 'google_transit' + '.zip'
+		user_borough = os.environ['flaskr_borough']
+		if user_borough not in boroughs:
+			print "Borough not defined, try again"
+			sys.exit(0)
+
+		if user_borough == 'mtabc':
+			self.gtfs_file = path + 'google_transit_' + '.zip'
+		else:
+			self.gtfs_file = path + 'google_transit_' + user_borough  + '.zip'
 		self.gtfs_feed = mzgtfs.feed.Feed(filename=self.gtfs_file)
 
 	def get_calendar_bookends(self):
@@ -41,6 +49,7 @@ class FeedDates():
 
 	def create_new_calendar_file(self, svcDate):
 		self.load_gtfs()
+		user_borough = os.environ['flaskr_borough']
 		og_cal = self.gtfs_feed.service_exceptions()
 
 		svc_date = svcDate['calendar']['d']
@@ -75,8 +84,11 @@ class FeedDates():
 				os.rename(filename, filename[:14] + '.txt')
 			elif filename.startswith("calendar"):
 				os.rename(filename, filename[:8] + '.txt')
-		self.gtfs_feed.make_zip('google_transit' + boroughs[0] + '.zip', files=['calendar.txt', 'calendar_dates.txt'])
+		if user_borough == 'mtabc':
+			self.gtfs_feed.make_zip('google_transit.zip', files=['calendar.txt', 'calendar_dates.txt'])
+			os.rename("google_transit.zip", "flaskr/gtfs_files/google_transit.zip")
+		else:
+			self.gtfs_feed.make_zip('google_transit_' + user_borough + '.zip', files=['calendar.txt', 'calendar_dates.txt'])
+			os.rename("google_transit_" + user_borough + ".zip", "flaskr/gtfs_files/google_transit_" + user_borough + ".zip")
 		os.remove("calendar.txt")
 		os.remove("calendar_dates.txt")
-		os.rename("google_transit" + boroughs[0] + ".zip", "flaskr/gtfs_files/google_transit" + boroughs[0] + ".zip")
-

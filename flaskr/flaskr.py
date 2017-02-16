@@ -19,7 +19,6 @@ from feeddates import FeedDates
 from datepicker import DatePicker
 from flask_cors import CORS, cross_origin
 
-# create our little application :)
 app = Flask(__name__)
 CORS(app)
 

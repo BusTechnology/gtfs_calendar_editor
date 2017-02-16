@@ -1,3 +1,5 @@
+read -p "Please enter the GTFS file: ('staten_island', 'queens', 'manhattan', 'bronx', 'brooklyn', or 'mtabc'): " flaskr_borough
+export flaskr_borough=$flaskr_borough
 export FLASK_APP=flaskr
 flask run &
 cd gtfs-editor
