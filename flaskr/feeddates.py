@@ -14,6 +14,7 @@ gtfs_calendar = gtfshandler()
 class FeedDates():
 
 	def load_gtfs(self):
+<<<<<<< Updated upstream
 		user_borough = os.environ['flaskr_borough']
 		if user_borough not in boroughs:
 			print "Borough not defined, try again"
@@ -23,6 +24,12 @@ class FeedDates():
 			self.gtfs_file = path + 'google_transit_' + '.zip'
 		else:
 			self.gtfs_file = path + 'google_transit_' + user_borough  + '.zip'
+=======
+		# for NYCT bus
+		# self.gtfs_file = path + 'google_transit' + boroughs[0] + '.zip'
+		# for MTABC
+		self.gtfs_file = path + 'google_transit' + '.zip'
+>>>>>>> Stashed changes
 		self.gtfs_feed = mzgtfs.feed.Feed(filename=self.gtfs_file)
 
 	def get_calendar_bookends(self):
@@ -84,6 +91,7 @@ class FeedDates():
 				os.rename(filename, filename[:14] + '.txt')
 			elif filename.startswith("calendar"):
 				os.rename(filename, filename[:8] + '.txt')
+<<<<<<< Updated upstream
 		if user_borough == 'mtabc':
 			self.gtfs_feed.make_zip('google_transit.zip', files=['calendar.txt', 'calendar_dates.txt'])
 			os.rename("google_transit.zip", "flaskr/gtfs_files/google_transit.zip")
@@ -92,3 +100,10 @@ class FeedDates():
 			os.rename("google_transit_" + user_borough + ".zip", "flaskr/gtfs_files/google_transit_" + user_borough + ".zip")
 		os.remove("calendar.txt")
 		os.remove("calendar_dates.txt")
+=======
+		self.gtfs_feed.make_zip('google_transit' + '.zip', files=['calendar.txt', 'calendar_dates.txt'])
+		os.remove("calendar.txt")
+		os.remove("calendar_dates.txt")
+		os.rename("google_transit" + ".zip", "flaskr/gtfs_files/google_transit" + ".zip")
+
+>>>>>>> Stashed changes

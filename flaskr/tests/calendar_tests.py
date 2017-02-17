@@ -6,7 +6,7 @@ import mzgtfs.feed
 import zipfile
 import time
 
-from gtfshandler import gtfshandler 
+from flaskr.gtfshandler import gtfshandler 
 
 boroughs = ['staten_island']
 path = "tests/gtfs_files/"
@@ -39,9 +39,6 @@ class CalendarTestCase(unittest.TestCase):
 	def setUp(self):
 		self.gtfs_file = path + 'google_transit_' + boroughs[0] + '.zip'
 		self.gtfs_feed = mzgtfs.feed.Feed(filename=self.gtfs_file)
-		# print 'calendars', calendars
-		# self.temp = gtfs_calendar_handler.set_up(self.gtfs_feed)
-
 
 	def test_gtfs_feed_load(self):
 		self.assertIsNotNone(os.path.isfile(self.gtfs_file))
@@ -124,12 +121,9 @@ class CalendarTestCase(unittest.TestCase):
 	def test_activate_calendar_dates(self):
 		gtfs_calendar_handler.set_up(self.gtfs_feed)
 		cals = gtfs_calendar_handler.activate_calendar('YU_D6-Sunday','20170102')
-		# print cals['20160102']
 		for k, v in cals.iteritems():
 			if k == "exception_type":
 				self.assertTrue(v, '1')
-
-
 
 
 if __name__ == '__main__':
