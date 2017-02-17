@@ -3,7 +3,7 @@ from datetime import timedelta
 import calendar
 import utils
 
-class GtfsHandler():
+class gtfshandler():
 
 	def set_up(self, gtfs_feed):
 		global calendar_dates 

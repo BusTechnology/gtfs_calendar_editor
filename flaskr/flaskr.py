@@ -14,7 +14,7 @@ import os
 from flask import Flask, request, Response, session, g, redirect, url_for, abort, \
 	 render_template, flash, send_from_directory, jsonify
 
-from gtfsHandler import GtfsHandler
+from gtfshandler import gtfshandler
 from feeddates import FeedDates
 from datepicker import DatePicker
 from flask_cors import CORS, cross_origin

@@ -1,7 +1,7 @@
 from feeddates import FeedDates
-from gtfsHandler import GtfsHandler
+from gtfshandler import gtfshandler
 
-gtfs_calendar = GtfsHandler()
+gtfs_calendar = gtfshandler()
 
 class DatePicker():
 

@@ -3,13 +3,13 @@ import mzgtfs.feed
 import zipfile
 import time
 import sys
-from gtfsHandler import GtfsHandler
+from gtfshandler import gtfshandler
 
 import userInput
 
 path = "flaskr/gtfs_files/"
 boroughs = ['staten_island', 'queens', 'manhattan', 'bronx', 'brooklyn', 'mtabc']
-gtfs_calendar = GtfsHandler()
+gtfs_calendar = gtfshandler()
 
 class FeedDates():
 

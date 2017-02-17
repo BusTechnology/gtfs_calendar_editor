@@ -6,11 +6,11 @@ import mzgtfs.feed
 import zipfile
 import time
 
-from gtfsHandler import GtfsHandler 
+from gtfshandler import gtfshandler 
 
 boroughs = ['staten_island']
 path = "tests/gtfs_files/"
-gtfs_calendar_handler = GtfsHandler()
+gtfs_calendar_handler = gtfshandler()
 reg_service = '20160927'
 
 SI_trips_by_service_id = [
