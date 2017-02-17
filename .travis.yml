@@ -11,4 +11,5 @@ script:
   - cd flaskr/
   - pwd
   - ls
+  - cp gtfshandler.py tests/gtfshandler.py
   - python tests/calendar_tests.py
