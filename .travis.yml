@@ -7,9 +7,6 @@ branches:
 sudo: required
 script:
   - sudo python setup.py install
-  - pwd
   - cd flaskr/
-  - pwd
-  - ls
   - cp *.py tests/
   - python tests/calendar_tests.py
