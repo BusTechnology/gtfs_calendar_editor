@@ -13,3 +13,5 @@ gtfs-editor/test/e2e/reports
 gtfs-editor/selenium-debug.log
 flaskr/tests/gtfs_files/*
 build
+src/tests
+
