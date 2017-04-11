@@ -38,6 +38,7 @@ const initialData = () => {
     },
     showModal: {
       i: false,
+      datesOg: [],
       datesMod: []
     }
   }
@@ -64,10 +65,7 @@ export default {
     ]),
     onEditClicked (calendarToEdit) {
       this.calendarToEdit = { ...calendarToEdit }
-      this.showModal.datesMod.push(calendarToEdit.d)
-      // console.log('calendarToEdit')
-      // console.log(calendarToEdit)
-      // console.log(this.showModal.datesMod)
+      this.showModal.datesOg.push(JSON.parse(JSON.stringify(this.calendarToEdit)))
     },
     onDateSelected (dateToEdit) {
       this.dateToEdit = { ...dateToEdit }
@@ -80,7 +78,6 @@ export default {
         day = '0' + day
       }
       var gtfsDate = dateToEdit.d.getFullYear() + '' + month + '' + day
-      // console.log(gtfsDate)
       var active = this.calendars.full_calendar[gtfsDate]
       var inactive = this.calendars.all_service_id.slice(0)
       for (var i = 0; i < active.length; i++) {
@@ -98,9 +95,11 @@ export default {
       this.selectSrvToDeactivate(calendar).then(() => this.deactivateCalendarInForm())
     },
     activateCalendarInForm () {
+      this.showModal.datesMod.indexOf(this.calendarToEdit) === -1 ? this.showModal.datesMod.push(this.calendarToEdit) : console.log('This item already exists')
       this.activateCalendar(this.calendarToEdit)
     },
     deactivateCalendarInForm () {
+      this.showModal.datesMod.indexOf(this.calendarToEdit) === -1 ? this.showModal.datesMod.push(this.calendarToEdit) : console.log('This item already exists')
       this.deactivateCalendar(this.calendarToEdit)
     },
     onSubmit (calendar) {
