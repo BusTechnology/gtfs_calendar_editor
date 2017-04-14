@@ -3,6 +3,7 @@ import mzgtfs.feed
 import zipfile
 import time
 import sys
+import json
 from gtfshandler import gtfshandler
 
 path = "flaskr/gtfs_files/"
@@ -44,15 +45,21 @@ class FeedDates():
 
 		return all_service_id
 
-	def create_new_calendar_file(self, svcDate):
+	def add_new_service(self, cal_to_add):
+		cal_to_add = {'date': str(svc_date), 'service_id': str(svc), 'exception_type': '1'}
+		og_cal.append(cal_to_add)
+		print('added new service')
+
+	def create_new_calendar_file(self, calObj):
 		self.load_gtfs()
 		user_borough = os.environ['flaskr_borough']
 		og_cal = self.gtfs_feed.service_exceptions()
 
-		svc_date = svcDate['calendar']['d']
-		active_service = svcDate['calendar']['s']
-		inactive_service = svcDate['calendar']['i']
+		svc_date = calObj['calendar']['d']
+		active_service = calObj['calendar']['s']
+		inactive_service = calObj['calendar']['i']
 
+		#go through calendar_dates objects, and turn on/off services that were edited in the webapp 
 		for entry in og_cal:
 			
 			if entry.get('date') == svc_date:
@@ -60,13 +67,25 @@ class FeedDates():
 				e_type = entry.get('exception_type') 
 				
 				for svc in active_service:
+					print(json.dumps(svc))
 					if s_id == svc and e_type == '2':
 						entry.set('exception_type', '1')
 
 				for svc in inactive_service:
 					if s_id == svc and e_type == '1':
 						entry.set('exception_type', '2')
-						
+
+		#go through active/inactive services from the calendar object passed in from the webapp, and append to the calendar_dates.txt file
+		for svc in active_service:
+			cal_to_add = {'date': str(svc_date), 'service_id': str(svc), 'exception_type': '1'}
+			if cal_to_add not in og_cal:
+				og_cal.append(cal_to_add)
+
+		for svc in inactive_service:
+			cal_to_add = {'date': str(svc_date), 'service_id': str(svc), 'exception_type': '2'}
+			if cal_to_add not in og_cal:
+				og_cal.append(cal_to_add)			
+
 		for entry in og_cal:
 			if entry.get('date') == svc_date:
 				print(entry.get('service_id'))
