@@ -65,7 +65,7 @@ export default {
     ]),
     onEditClicked (calendarToEdit) {
       this.calendarToEdit = { ...calendarToEdit }
-      this.showModal.datesOg.push(JSON.parse(JSON.stringify(this.calendarToEdit)))
+      this.showModal.datesOg.indexOf(this.calendarToEdit) === -1 ? this.showModal.datesOg.push(JSON.parse(JSON.stringify(this.calendarToEdit))) : console.log('This item already exists')
     },
     onDateSelected (dateToEdit) {
       this.dateToEdit = { ...dateToEdit }
@@ -87,6 +87,7 @@ export default {
         }
       }
       this.calendarToEdit = {'d': gtfsDate, 's': active, 'i': inactive}
+      this.showModal.datesOg.indexOf(this.calendarToEdit) === -1 ? this.showModal.datesOg.push(JSON.parse(JSON.stringify(this.calendarToEdit))) : console.log('This item already exists')
     },
     onActivate (calendar) {
       this.selectSrvToActivate(calendar).then(() => this.activateCalendarInForm())
